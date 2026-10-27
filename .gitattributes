@@ -1,0 +1,15 @@
+# Keep dist archives (Packagist / composer --prefer-dist) lean: ship only what
+# a client installation needs.
+/tests               export-ignore
+/docs/screenshots    export-ignore
+/scripts/package.sh         export-ignore
+/scripts/build_installer.sh export-ignore
+/scripts/installer_header.sh export-ignore
+/phpunit.xml.dist    export-ignore
+/phpcs.xml.dist      export-ignore
+/.gitattributes      export-ignore
+/.gitignore          export-ignore
+
+* text=auto eol=lf
+*.png binary
+*.pdf binary

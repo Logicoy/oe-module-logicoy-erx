@@ -1,0 +1,23 @@
+/*
+ * The module's dialogs: the send-time ID.me MFA dialog and the confirmation
+ * dialog from erx-confirm.js. Plain overlay rather than Bootstrap's modal, so
+ * it does not depend on which scripts the OpenEMR header happened to load.
+ * Loaded by every screen that shows one, the setup screen included.
+ *
+ * license  https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
+ */
+
+.erx-modal {
+    position: fixed; inset: 0; z-index: 1050;
+    background: rgba(0, 0, 0, .45);
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.erx-modal[hidden] { display: none; }
+.erx-modal-dialog {
+    background: #fff; border-radius: 6px; width: 100%; max-width: 520px;
+    padding: 16px 18px; box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+.erx-modal-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+}
+.erx-modal-footer { margin-top: 12px; text-align: right; }

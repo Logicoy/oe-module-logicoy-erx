@@ -1,0 +1,129 @@
+/*
+ * Prescribing screen styles.
+ * license  https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
+ */
+
+.erx { padding: 12px; }
+
+.erx-banner {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    padding: 10px 14px; margin-bottom: 12px;
+    background: #fff; border: 1px solid #dee2e6; border-radius: 4px;
+}
+.erx-banner-title { font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
+.erx-banner-facts { font-size: 13px; color: #6c757d; }
+.erx-banner-facts span + span::before { content: "\00b7"; margin: 0 6px; }
+
+.erx .req { color: #c0392b; }
+
+/* The prescription form, as numbered steps. */
+.erx-step { padding: 14px 0; border-top: 1px solid #eef0f2; }
+.erx-step:first-child { padding-top: 0; border-top: 0; }
+.erx-step-title { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; font-weight: 600; }
+.erx-step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #e9ecef; color: #495057; font-size: 12px; font-weight: 600;
+}
+.erx-step-invalid .erx-step-num { background: #dc3545; color: #fff; }
+.erx-step-invalid #drug-search,
+.erx-step-invalid #ph-name { border-color: #dc3545; }
+.erx-keep {
+    padding: 6px 10px; margin-bottom: 8px;
+    border-left: 3px solid #17a2b8; background: #f1f9fb; color: #0c5460;
+}
+.erx-form-footer {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    padding-top: 14px; border-top: 1px solid #eef0f2;
+}
+/* Action results: fixed in the corner, so they are seen wherever the page is
+   scrolled to. */
+.erx-toasts {
+    position: fixed; right: 16px; bottom: 16px; z-index: 1060;
+    display: flex; flex-direction: column; gap: 8px;
+    width: calc(100% - 32px); max-width: 420px;
+}
+.erx-toast { margin: 0; box-shadow: 0 6px 20px rgba(0, 0, 0, .18); }
+.erx-checked {
+    margin-top: 6px; padding: 4px 8px;
+    border-left: 3px solid #17a2b8; background: #f1f9fb; color: #0c5460;
+}
+
+.erx-compose-editing { border-color: #17a2b8; }
+.erx-compose-editing > .card-header { background: #e8f6f8; }
+.erx-draft-editing { border-color: #17a2b8; background: #f1f9fb; }
+
+/* Search result lists sit under their input and scroll rather than pushing
+   the form around. */
+.erx-results {
+    max-height: 260px; overflow-y: auto;
+    border: 1px solid #dee2e6; border-radius: 4px; background: #fff;
+}
+
+.erx-result {
+    padding: 7px 10px; cursor: pointer; border-bottom: 1px solid #f1f3f5;
+}
+.erx-result:last-child { border-bottom: 0; }
+.erx-result:hover, .erx-result:focus { background: #eef5fb; outline: none; }
+.erx-result .name { font-weight: 600; }
+.erx-result .meta { font-size: 12px; color: #6c757d; }
+
+.erx-chosen {
+    padding: 8px 10px; border: 1px solid #b8daff; background: #eef5fb; border-radius: 4px;
+}
+.erx-chosen .clear { float: right; }
+
+.erx-controlled {
+    border-color: #f5c6cb; background: #fdecea; color: #721c24;
+}
+
+.erx-draft {
+    border: 1px solid #dee2e6; border-radius: 4px; padding: 9px 11px; margin-bottom: 8px;
+}
+.erx-draft .drug { font-weight: 600; }
+.erx-draft .meta { font-size: 12px; color: #6c757d; }
+.erx-draft .actions { margin-top: 7px; display: flex; gap: 6px; flex-wrap: wrap; }
+
+.erx-spinner { font-size: 12px; color: #6c757d; padding: 6px 10px; }
+
+/* Previous / Next under a list that has more than one page. */
+.erx-pager {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    margin-top: 8px; padding-top: 8px; border-top: 1px solid #eef0f2;
+}
+
+/* Pharmacy requests and their review panel */
+.erx-request { border-bottom: 1px solid #e5e5e5; padding: .5rem 0; }
+.erx-request:last-child { border-bottom: 0; }
+.erx-request .meta { color: #6c757d; }
+.erx-request .actions { margin-top: .25rem; }
+.erx-review { background: #f8f9fa; border-radius: .25rem; margin-top: .5rem; padding: .5rem .75rem; }
+.erx-med { margin: .25rem 0 .5rem; }
+.erx-med .meta { color: #6c757d; }
+.erx-requested-refills {
+    display: inline-block;
+    margin-top: .25rem;
+    padding: .15rem .5rem;
+    border-radius: .25rem;
+    background: #fff3cd;
+    border: 1px solid #ffe69c;
+    color: #664d03;
+    font-size: 13px;
+}
+.erx-choice { display: flex; gap: .5rem; align-items: flex-start; font-weight: normal; }
+.erx-choice input { margin-top: .35rem; }
+
+/* The prescriber's version of a requested medication, under Approve with
+   changes. */
+.erx-changes {
+    border: 1px solid #b8daff; border-left-width: 4px; border-radius: .25rem;
+    background: #fff; padding: .6rem .75rem; margin: .5rem 0;
+}
+.erx-changes-title { font-weight: 600; margin-bottom: .1rem; }
+.erx-field { display: block; font-size: 12px; color: #6c757d; margin-bottom: .5rem; }
+.erx-field .form-control { margin-top: .15rem; color: #212529; }
+.erx-drug-chosen { position: relative; }
+.erx-drug-chosen.erx-changed { border-color: #c3e6cb; background: #f0f9f1; }
+
+/* The dialog itself is in erx-modal.css. */
+.erx-mfa-in-modal .form-check { margin-bottom: 4px; }

@@ -1,0 +1,16 @@
+vendor/
+.phpunit.cache/
+.phpunit.result.cache
+*.log
+.DS_Store
+dist/
+
+# Local development only — never published
+.claude/
+dev.sh
+HANDOFF.md
+STATUS.md
+TODO.md
+TESTING.md
+docs/screenshots/1.0.8/
+docs/screenshots/*.zip

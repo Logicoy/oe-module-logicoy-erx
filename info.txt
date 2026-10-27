@@ -1,0 +1,11 @@
+LogiCoy eRx API
+Electronic prescribing through the LogiCoy eRx network.
+
+Adds a prescribing entry point in patient context, stores per-practice and
+per-provider credentials, queues prescription traffic to the LogiCoy backend,
+and surfaces a prescription log for support.
+
+Requires OpenEMR 7.0.0 or later.
+
+Note: OpenEMR uses the FIRST LINE of this file verbatim as the module name in
+the modules registry, so it must stay short and plain ASCII.

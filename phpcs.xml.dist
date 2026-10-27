@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="LogiCoy eRx">
+    <description>PSR-12, with the exceptions OpenEMR's module contract forces.</description>
+
+    <file>src</file>
+    <file>tests</file>
+    <file>public</file>
+    <file>scripts</file>
+    <file>ModuleManagerListener.php</file>
+    <file>openemr.bootstrap.php</file>
+
+    <!-- PSR-12 is a PHP standard; do not apply it to JS/CSS assets. -->
+    <arg name="extensions" value="php"/>
+
+    <rule ref="PSR12"/>
+
+    <!--
+      OpenEMR's Laminas module manager loads this class by name from the global
+      namespace and dispatches to snake_case action methods (install_sql,
+      upgrade_sql). Both are the framework's contract, not our style choice.
+    -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>ModuleManagerListener.php</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>ModuleManagerListener.php</exclude-pattern>
+    </rule>
+</ruleset>
