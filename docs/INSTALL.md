@@ -11,7 +11,23 @@ credentials pack supplied by LogiCoy.
 
 ## 1. Place the module
 
-LogiCoy supplies a single installer file, `install-oe-module-logicoy-erx-<version>.sh`.
+If your server has git or composer, the module can be placed the same way as
+any other OpenEMR custom module. Both land it at
+`interface/modules/custom_modules/oe-module-logicoy-erx`; skip to step 2
+afterwards.
+
+```bash
+cd /path/to/openemr/interface/modules/custom_modules
+git clone https://github.com/Logicoy/oe-module-logicoy-erx.git
+```
+
+or, from the OpenEMR root:
+
+```bash
+composer require logicoy/oe-module-logicoy-erx
+```
+
+Otherwise, LogiCoy supplies a single installer file, `install-oe-module-logicoy-erx-<version>.sh`.
 It carries the whole module inside it — there is nothing else to download.
 
 Copy it to the OpenEMR server and run it as root:

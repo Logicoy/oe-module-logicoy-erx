@@ -1,11 +1,68 @@
-# oe-module-logicoy-erx
+# OpenEMR LogiCoy eRx
 
 An OpenEMR custom module that connects a practice's OpenEMR installation to the
 LogiCoy eRx network.
 
-Ships to client practices as a single self-extracting installer, built by
-`scripts/build_installer.sh` and run on the practice's OpenEMR server. See
-[docs/INSTALL.md](docs/INSTALL.md) for the administrator-facing setup.
+**Module Manager name:** LogiCoy eRx API  
+**Package version:** 1.0.9 (`version.php`)  
+**Install directory name:** `oe-module-logicoy-erx`  
+**Namespace:** `LogiCoy\ERx`  
+**Author:** LogiCoy
+
+## Compatibility
+
+| Target | Status |
+|--------|--------|
+| **OpenEMR 7.0.x** (PHP 8.1+) | Supported |
+| **OpenEMR 8.x** | Verified against 8.2.0; see [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md) |
+
+- PHP **8.1+**
+- Outbound HTTPS from the OpenEMR server to the LogiCoy backend
+- LogiCoy credentials, configured in the module's setup screen (never stored in
+  this repository)
+
+## Installation
+
+Pick one of the three ways to place the module, then finish in Module Manager.
+
+**Git clone**
+
+```bash
+cd /path/to/openemr/interface/modules/custom_modules
+git clone https://github.com/Logicoy/oe-module-logicoy-erx.git
+```
+
+**Composer** (from the OpenEMR root)
+
+```bash
+composer require logicoy/oe-module-logicoy-erx
+```
+
+**Installer script** (for practices without git or composer)
+
+LogiCoy supplies a single self-extracting file,
+`install-oe-module-logicoy-erx-<version>.sh`, built by
+`scripts/build_installer.sh`. Run it as root on the OpenEMR server; it finds
+the OpenEMR directory, places the module and sets ownership.
+
+Then in OpenEMR: **Modules → Manage Modules** → find **LogiCoy eRx API** in the
+unregistered list → **Register** → **Install** (creates the module's tables)
+→ **Enable** → open the module's config icon to load credentials.
+
+The directory name must stay `oe-module-logicoy-erx`; it is how OpenEMR finds
+the module. No `composer install` is needed at runtime: the module has no
+dependencies beyond what OpenEMR ships.
+
+[docs/INSTALL.md](docs/INSTALL.md) is the full administrator guide, covering
+Docker installs, configuration, credentials, prescriber setup and background
+sync.
+
+### Database
+
+- `sql/install.sql` — initial schema, run by the **Install** button. Guarded
+  with `#IfNotTable`, so repeating it is safe.
+- `sql/upgrade/*_upgrade.sql` — versioned migrations, applied by
+  `ModuleManagerListener` on upgrade.
 
 ## What this module does
 
@@ -116,3 +173,19 @@ fixtures are synthetic — no PHI, ever.
 [TESTING.md](TESTING.md) is the full walkthrough, split into what can be tested
 today and what needs the LogiCoy credential. `./dev.sh` wraps the container
 commands; run it with no arguments to see what it does.
+
+## Security
+
+- Do not commit backend credentials, private keys or client secrets; they are
+  configured only in the module's credentials screen and stored encrypted.
+- Every entry point stays behind OpenEMR's authentication, CSRF and ACL
+  checks. Prescribing surfaces check the same ACL as core Rx.
+
+## License
+
+GNU General Public License v3.0 or later (GPL-3.0-or-later). See
+[LICENSE](LICENSE).
+
+## Support
+
+https://github.com/Logicoy/oe-module-logicoy-erx/issues
